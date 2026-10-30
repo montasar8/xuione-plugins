@@ -1,0 +1,4 @@
+*.zip
+tmp/
+state.json
+.DS_Store

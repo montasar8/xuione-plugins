@@ -1,0 +1,9 @@
+[
+  {
+    "slug": "example-plugin",
+    "name": "Example Plugin",
+    "version": "1.0.0",
+    "desc": "Minimal template plugin.",
+    "zip": "https://example.com/plugins/example-plugin.zip"
+  }
+]
