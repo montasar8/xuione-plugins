@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =============================================================================
-#  install.sh  —  XUI.ONE Plugins framework installer (https://github.com/OWNER/xuione-plugins)
+#  install.sh  —  XUI.ONE Plugins framework installer (https://github.com/montasar8/xuione-plugins)
 #  Author: Monti <moutih1982@gmail.com>   License: MIT
 #
 #  Usage (as root on the XUI.ONE server):

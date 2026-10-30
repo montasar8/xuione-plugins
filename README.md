@@ -4,7 +4,6 @@
 
 XUI.ONE is encoded and cannot be modified, and its development has stopped. This project adds a **Plugins** section to the admin panel: upload a plugin package (or install one from a catalog), enable it, and it shows up as a native page — same header, menu, styling and login as the rest of the panel. Build your own plugins in plain PHP in minutes.
 
-![Plugins menu item next to Management](docs/screenshot-menu.png)
 
 It adds a **Plugins** item to the admin menu and a page where you can upload plugin packages, enable/disable them, or install them with one click from a catalog. Plugin pages render **inside the real XUI admin interface** (same header, menu, styling, live stats) and are protected by the panel's own login — no second password, no separate site.
 
@@ -19,7 +18,7 @@ XUI.ONE is encoded, so it cannot be modified or extended directly. This framewor
 On the XUI.ONE server, as root:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/OWNER/xuione-plugins/main/install.sh -o install.sh
+curl -fsSL https://raw.githubusercontent.com/montasar8/xuione-plugins/main/install.sh -o install.sh
 bash install.sh
 ```
 
@@ -158,10 +157,10 @@ See [`catalog.example.json`](catalog.example.json).
 Created and maintained by **Monti** — IPTV/OTT engineer (15+ years in IPTV and satellite distribution; Android/Roku player apps, XUI.ONE deployments, reseller setups).
 
 - Email: **moutih1982@gmail.com**
-- GitHub: [@OWNER](https://github.com/OWNER)
+- GitHub: [@montasar8](https://github.com/montasar8)
 - <!-- add: Upwork profile · Telegram · website -->
 
-Bug reports and plugin ideas → [open an issue](https://github.com/OWNER/xuione-plugins/issues). Need a custom plugin, a turnkey XUI.ONE / reseller setup, or branded player apps? Email me.
+Bug reports and plugin ideas → [open an issue](https://github.com/montasar8/xuione-plugins/issues). Need a custom plugin, a turnkey XUI.ONE / reseller setup, or branded player apps? Email me.
 
 ## Contributing
 
