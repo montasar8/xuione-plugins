@@ -1,0 +1,2 @@
+Description: Free plugin framework for the XUI.ONE IPTV panel — add missing features as native admin pages, no XUI files touched.
+Topics: xui-one, xuione, iptv, xtream-codes, xtream-ui, ott, plugins, php, nginx

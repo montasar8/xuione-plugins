@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # =============================================================================
-#  xui-plugins-install.sh  —  XUI Plugins framework installer for XUI.ONE 1.5.x
+#  install.sh  —  XUI.ONE Plugins framework installer (https://github.com/OWNER/xuione-plugins)
+#  Author: Monti <moutih1982@gmail.com>   License: MIT
 #
 #  Usage (as root on the XUI.ONE server):
 #     bash xui-plugins-install.sh                 # install / re-install (keeps plugins + state)

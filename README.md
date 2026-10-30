@@ -1,6 +1,10 @@
 # XUI.ONE Plugins
 
-A small, open plugin framework for the **XUI.ONE 1.5.x** IPTV panel.
+**Free, open-source plugin framework for the XUI.ONE IPTV panel — add the features XUI is missing, without touching a single XUI file.**
+
+XUI.ONE is encoded and cannot be modified, and its development has stopped. This project adds a **Plugins** section to the admin panel: upload a plugin package (or install one from a catalog), enable it, and it shows up as a native page — same header, menu, styling and login as the rest of the panel. Build your own plugins in plain PHP in minutes.
+
+![Plugins menu item next to Management](docs/screenshot-menu.png)
 
 It adds a **Plugins** item to the admin menu and a page where you can upload plugin packages, enable/disable them, or install them with one click from a catalog. Plugin pages render **inside the real XUI admin interface** (same header, menu, styling, live stats) and are protected by the panel's own login — no second password, no separate site.
 
@@ -37,6 +41,18 @@ bash install.sh uninstall           # remove menu button + entry link, keep /hom
 bash install.sh uninstall --purge   # also delete /home/xui_plugins and the DB user
 bash install.sh install --code ABCDEFGH   # choose an access code when a server has several
 ```
+
+## Quick start (step by step)
+
+1. **Install the framework** — SSH to your XUI.ONE server as root and run the two commands above.
+2. **Open the panel** and hard-refresh (`Ctrl+Shift+R`). Click the new **Plugins** item in the top menu.
+3. **Add a plugin** — either
+   - *Upload*: pick a `.zip` package and click **Upload & install**, or
+   - *Catalog*: set `XP_CATALOG` in `/home/xui_plugins/config.php` to a catalog URL; plugins listed there get an **Install** button.
+4. **Enable** the plugin, then **Open** it. Disable or **Remove** it at any time from the same page.
+5. **Try the example**: `zip -r example-plugin.zip plugins/example-plugin` from this repo and upload it — then copy it as a starting point for your own.
+6. **Update the framework**: download the latest `install.sh` and run it again. Plugins, enabled state and settings are preserved.
+7. **Regenerated your access code?** Run `install.sh` again — it re-detects the code and re-adds the menu button.
 
 ## Requirements
 
@@ -124,6 +140,28 @@ See [`catalog.example.json`](catalog.example.json).
 - Everything is admin-only (`member_group_id = 1`) and CSRF-protected.
 - Uploaded zips are checked for path traversal and size; the slug is validated before anything is moved into place. Installing a plugin means running its PHP as the panel's user — only install packages you trust.
 - Plugin files live in `/home/xui_plugins/plugins/`, owned by the panel user; no XUI file is modified. The only XUI-side changes are a symlink and a marked block in one nginx conf, both removed by `uninstall`.
+
+## Troubleshooting
+
+| Symptom | Cause / fix |
+|---|---|
+| No **Plugins** item in the menu | Hard-refresh. If still missing: `grep -c xui_plugins /home/xui/bin/nginx/conf/codes/<CODE>.conf` should be ≥1; the installer warns if the nginx build lacks `http_sub_module`. Re-run `install.sh`. |
+| "Admins only." | Your XUI user is not in group 1. Re-run with `install.sh install --admin-group <id>`. |
+| Upload fails with an error code | PHP upload limit — check `upload_max_filesize` / `post_max_size` in `/home/xui/bin/php/lib/php.ini`; packages must be ≤ 20 MB. |
+| "No zip support" | XUI's PHP has neither `ZipArchive` nor `exec()`+`unzip`. Unzip manually into `/home/xui_plugins/plugins/<slug>/` and `chown -R xui:xui` it. |
+| Plugin page shows a 500 | Enable errors temporarily at the top of the plugin's `view.php`: `ini_set('display_errors',1);`. Most often a SQL typo (remember to backtick the `lines` table). |
+| Live stats stop after opening a plugin | Fixed in 0.1.0 (`headerStats()` is re-armed). Update the framework. |
+| Panel updated / files gone | Nothing to do — the framework lives outside `/home/xui`. Re-run `install.sh` only if the symlink or menu block was removed. |
+
+## Author & contact
+
+Created and maintained by **Monti** — IPTV/OTT engineer (15+ years in IPTV and satellite distribution; Android/Roku player apps, XUI.ONE deployments, reseller setups).
+
+- Email: **moutih1982@gmail.com**
+- GitHub: [@OWNER](https://github.com/OWNER)
+- <!-- add: Upwork profile · Telegram · website -->
+
+Bug reports and plugin ideas → [open an issue](https://github.com/OWNER/xuione-plugins/issues). Need a custom plugin, a turnkey XUI.ONE / reseller setup, or branded player apps? Email me.
 
 ## Contributing
 
